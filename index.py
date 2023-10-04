@@ -1,24 +1,24 @@
-from turtle import *
-import random
-import os
+import turtle as t
+import random, os
 
-window = Screen()
+window = t.Screen()
 window.bgcolor("black")
 random_angles = [30, 60]
 
 def dibujarArbol(tamanoDeRama, tortuga, continuar):
     random_angle = random.choice(random_angles)
     tortuga.pensize(tamanoDeRama/30)
-    if (tamanoDeRama < 30):
+    if tamanoDeRama < 30:
         return
-        if(continuar == False):
-            tortuga.forward(tamanoDeRama)
-            tortuga.left(random_angle)
-            dibujarArbol(tamanoDeRama*random.uniform(0.8, 0.9), tortuga, continuar)
-            tortuga.right(random_angle*2)
-            dibujarArbol(tamanoDeRama*random.uniform(0.8, 0.9), tortuga, continuar)
-            tortuga.left(random_angle)
-            tortuga.backward(tamanoDeRama)
+    if not continuar: # asumiendo que `continuar` es un booleano
+        tortuga.forward(tamanoDeRama)
+        tortuga.left(random_angle)
+        dibujarArbol(tamanoDeRama*random.uniform(0.8, 0.9), tortuga, continuar)
+        tortuga.right(random_angle*2)
+        dibujarArbol(tamanoDeRama*random.uniform(0.8, 0.9), tortuga, continuar)
+        tortuga.left(random_angle)
+        tortuga.backward(tamanoDeRama)
+
     tortuga.forward(tamanoDeRama)
     tortuga.left(random_angle)
     dibujarArbol(tamanoDeRama*random.uniform(0.8, 0.9), tortuga, continuar)
@@ -28,7 +28,7 @@ def dibujarArbol(tamanoDeRama, tortuga, continuar):
     tortuga.backward(tamanoDeRama)
 
 def dibujarNuevoArbol(continuar):
-    tortuga = Turtle()
+    tortuga = t.Turtle()
     tortuga.speed(0)
     tortuga.left(90)
     tortuga.penup()
@@ -40,7 +40,7 @@ def dibujarNuevoArbol(continuar):
 
 if __name__ == '__main__':
     while True:
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear') # Ésto lo vuelve compatible con Linux y macOS
         respuesta = input("¿Quieres dibujar otro árbol? (S/N) o si quieres salir (E): ").strip().lower()
         if respuesta == 'n':
             dibujarNuevoArbol(True)
