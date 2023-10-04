@@ -1,2 +1,2 @@
 # DarwinPy
-Un simulador de la evolucion darwiniana con Python
+Un simulador de la evolución darwiniana con Python
