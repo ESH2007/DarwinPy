@@ -6,6 +6,9 @@ __pycache__/
 # The images folder for the screenshots of the trees
 images/
 
+# The file with all the tree data
+datos_arbol.csv
+
 # C extensions
 *.so
 
